@@ -1,0 +1,55 @@
+Global Parameters
+---------------------------------------
+Max. Browninan Force: 8000
+Max. Iterations: 50000
+Microtubule Length: 20
+Simulation Speed: 10
+Total Trials: 3
+Trial Start Count: 1
+Continous Runs: True
+No. of Parallel Instances: 1
+Record Data: True
+Auto Name Files: True
+File Tag: 
+::Global
+
+Dimer Parameters
+---------------------------------------
+Count: 600
+Max. DeHydro Delay: 500
+Min. DeHydro Delay: 200
+Max. Break Iterations: 0
+Bond Affinity Range: 1
+Break Probability B1:0.01
+Break Probability B2:0.01
+Break Probability B3:0.01
+Break Probability B4:0.01
+Active State:True
+Dimer Intro Iteration:100
+::Dimer
+
+GTP Parameters
+---------------------------------------
+Count: 600
+Max. DeHydro Delay: 2500
+Min. DeHydro Delay: 2000
+Active State:False
+GTP Intro Iteration:100
+::GTP
+
+Katanin Parameters
+---------------------------------------
+Count: 750
+Max. Hydro Delay: 1000
+Min. Hydro Delay: 500
+Active State:True
+Katanin Intro Iteration:45000
+Bond Affinity Range: 2
+::KataninGlobal_MI_50000_eMI_BF_20000_eBF_MTL_20_eMTL_SS_10_eSS_RD_True_eRD_TR_0_eTR_eGlobal
+Dimer_C_500_eC_MaxDH_500_eMaxDH_MinDH_200_eMinDH_II_100_eII_BI_0_eBI_BR_1_eBR_b1_0.99_eb1_b2_0.99_eb2_b3_0.99_eb3_b4_0.99_eb4_AF_True_eAF_eDimer
+Gtp_C_500_eC_MaxDH_2500_eMaxDH_MinDH_2000_eMinDH_II_100_eII_AF_False_eAF_eGtp
+Katanin_C_750_eC_MaxH_1000_eMaxH_MinH_500_eMinH_II_45000_eII_AF_True_eAF_BR_2_eBR_eKatanin
+Global_MI_50000_eMI_BF_8000_eBF_MTL_20_eMTL_SS_10_eSS_RD_True_eRD_TR_0_eTR_eGlobal
+Dimer_C_600_eC_MaxDH_500_eMaxDH_MinDH_200_eMinDH_II_100_eII_BI_0_eBI_BR_1_eBR_b1_0.01_eb1_b2_0.01_eb2_b3_0.01_eb3_b4_0.01_eb4_AF_True_eAF_eDimer
+Gtp_C_600_eC_MaxDH_2500_eMaxDH_MinDH_2000_eMinDH_II_100_eII_AF_False_eAF_eGtp
+Katanin_C_750_eC_MaxH_1000_eMaxH_MinH_500_eMinH_II_45000_eII_AF_True_eAF_BR_2_eBR_eKatanin

@@ -1,0 +1,1 @@
+torchrun --standalone --nproc_per_node=gpu train_model.py --train_data processed_split_sequences/train_sequences_1.pkl --val_data processed_split_sequences/test_sequences_1.pkl --save_path however_you_want_to_name_your_model --num_heads 8 --num_layers 1 --hidden_dim 64 --lr 5e-6 --model_type mamba --embed_dim 8
