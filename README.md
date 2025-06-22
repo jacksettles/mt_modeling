@@ -52,6 +52,10 @@ Again check the args (make sure you pass in the path to a model that actually ex
 Once completed, you should be able to load these saved feature attributions into the
 `visualize_feature_importance.ipynb` notebook to run the animation.
 
+## Credit where credit is due
+The implementation for the Mamba models comes from this github repo: https://github.com/johnma2006/mamba-minimal/tree/master . I simply took the code
+from this repo and modified it to fit with the use case of MT modeling instead of language modeling.
+
 ## 6. Deactivate virtual environment when done
 `deactivate`
 
