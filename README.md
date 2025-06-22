@@ -17,14 +17,8 @@ mtenv\Scripts\activate
 pip install -r requirements.txt
 
 ## 4. Run training scripts:
-Either use the run_trainer.sh script directly from the command line via `source run_trainer.sh`, or (if working on an HPC with a slurm scheduler) use the slurm_train.sh script.
-This allows the training job to run on its own node so you don't have to wait on it to finish training.
+Either use the run_trainer.sh script directly from the command line via `source run_trainer.sh`, or (if working on an HPC with a slurm scheduler) use the slurm_train.sh script via `sbatch slurm_train.sh`. This allows the training job to run on its own node so you don't have to wait on it to finish training.
 
-<pre>
-  ```
-  sbatch slurm_train.sh
-  ```
-</pre>
 
 Make sure to check the args in the command inside the slurm_train.sh (or run_trainer.sh) file so that you have are training with the configuration you want.
 
