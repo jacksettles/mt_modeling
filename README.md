@@ -45,5 +45,14 @@ If using more than one GPU, adjust the slurm_train.sh script to allocate more th
 ```
 </pre>
 
+## 5. Feature Attribution
+
+If you want to use the `input*gradient` method of feature importance attribution, run the slurm_feature_attribution.sh script.
+Again check the args (make sure you pass in the path to a model that actually exists).
+Once completed, you should be able to load these saved feature attributions into the
+`visualize_feature_importance.ipynb` notebook to run the animation.
+
+## 6. Deactivate virtual environment when done
+`deactivate`
 
 
