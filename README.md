@@ -21,6 +21,8 @@ Either use the run_trainer.sh script directly from the command line via `source 
 
 
 Make sure to check the args in the command inside the slurm_train.sh (or run_trainer.sh) file so that you have are training with the configuration you want.
+If using the slurm_train.sh script, this will launch a job on a new node, so more than likely it will open in your home directory. Make sure you add a 
+`cd path/to/your/mt/directory` line before trying to run the training file.
 
 Training file has been set up to run in a PyTorch DDP fashion should you have access to and decide to use more than 1 GPU.
 If using more than one GPU, adjust the slurm_train.sh script to allocate more than 1 device. For example, to use 2 A100 GPUs:
