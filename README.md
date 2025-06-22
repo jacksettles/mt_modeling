@@ -17,4 +17,15 @@ mtenv\Scripts\activate
 pip install -r requirements.txt
 
 ## 4. Run training scripts:
-### Either use the run_trainer.sh script directly from the command line, or (if working on an HPC with a slurm scheduler) use the slurm_train.sh script.
+Either use the run_trainer.sh script directly from the command line, or (if working on an HPC with a slurm scheduler) use the slurm_train.sh script.
+This allows the training job to run on its own node so you don't have to wait on it to finish training.
+
+Training file has been set up to run in a PyTorch DDP fashion should you have access to and decide to use more than 1 GPU.
+If using more than one GPU, adjust the slurm_train.sh script to allocate more than 1 device:
+
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=16
+#SBATCH --gres=gpu:A100:1
+#SBATCH --time=1-
