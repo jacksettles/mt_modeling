@@ -24,7 +24,7 @@ Training file has been set up to run in a PyTorch DDP fashion should you have ac
 If using more than one GPU, adjust the slurm_train.sh script to allocate more than 1 device. For example, to use 2 A100 GPUs:
 
 <pre>
-```bash
+```python
 #!/bin/bash
 #SBATCH --partition=gpu_p
 #SBATCH --job-name=train_run_x
