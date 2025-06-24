@@ -20,11 +20,11 @@ pip install -r requirements.txt
 Either use the run_trainer.sh script directly from the command line via `source run_trainer.sh`, or (if working on an HPC with a slurm scheduler) use the slurm_train.sh script via `sbatch slurm_train.sh`. This allows the training job to run on its own node so you don't have to wait on it to finish training.
 
 
-Make sure to check the args in the command inside the slurm_train.sh (or run_trainer.sh) file so that you have are training with the configuration you want.
+Make sure to check the arguments in the command inside the slurm_train.sh (or run_trainer.sh) file so that you are training with the configuration you want.
 If using the slurm_train.sh script, this will launch a job on a new node, so more than likely it will open in your home directory. Make sure you add a 
 `cd path/to/your/mt/directory` line before trying to run the training file.
 
-Training file has been set up to run in a PyTorch DDP fashion should you have access to and decide to use more than 1 GPU.
+Training file has been set up to run in a PyTorch DDP fashion. So, should you have access to and decide to use more than 1 GPU, you can.
 If using more than one GPU, adjust the slurm_train.sh script to allocate more than 1 device. For example, to use 2 A100 GPUs:
 
 <pre>
