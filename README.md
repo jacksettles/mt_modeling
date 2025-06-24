@@ -3,7 +3,7 @@ My attempt at modeling microtubule dynamic instability using an LSTM, a transfor
 
 
 
-## 1. Create virtual environment (use any name you like)
+## 1. Create virtual environment (use any name you like, here we use 'mtenv')
 python -m venv mtenv
 
 ## 2. Activate the virtual environment
