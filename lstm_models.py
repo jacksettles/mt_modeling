@@ -21,7 +21,7 @@ class MTLSTM(nn.Module):
     def __init__(self, hidden_dim, num_layers=1, num_classes=4, embed_dim=8):
         super(MTLSTM, self).__init__()
         
-        self.meta_encoder = MetadataEncoder()
+        self.meta_encoder = MetadataEncoder(output_dim=260*embed_dim)
         self.embedding = nn.Embedding(num_classes, embed_dim)
         self.lstm = nn.LSTM(input_size = 260 * embed_dim, hidden_size=hidden_dim, num_layers=num_layers, batch_first=True)
         self.fc = nn.Linear(hidden_dim, 260 * num_classes)

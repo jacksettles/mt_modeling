@@ -96,32 +96,42 @@ class Trainer():
         outputs = self.model(inputs, meta_data)
         reshaped_outputs = outputs.view(-1, self.vocab_size)
         reshaped_targets = targets.view(-1)
+        num_preds = reshaped_targets.size(0)
         loss = self.criterion(reshaped_outputs, reshaped_targets)
         loss.backward()
         self.optimizer.step()
         self.scheduler.step()
+        return loss, num_preds
         
         
     def _run_epoch(self, epoch):
         self.train_data.sampler.set_epoch(epoch)
+        epoch_loss = torch.tensor(0.0, device=self.device)
+        epoch_preds = 0
         for batch in tqdm(self.train_data, desc="Training", total=len(self.train_data)):
-            self._run_batch(batch)
+            batch_loss, batch_preds = self._run_batch(batch)
+            epoch_loss += batch_loss
+            epoch_preds += batch_preds
+        avg_train_loss = epoch_loss.item() / epoch_preds
+        return avg_train_loss
         
         
     def train(self, args):
         # Initial eval to get baselines
+        self.model = self.model.to(self.device)
         best_ce_loss = self.evaluate()
         
         for epoch in range(self.num_epochs):
+            self.model = self.model.to(self.device)
             self.model.train() # set to train mode
-            self._run_epoch(epoch)
+            avg_train_loss = self._run_epoch(epoch)
             
             # Eval after each epoch
             avg_ce_loss = self.evaluate()
             current_lr = self.scheduler.get_last_lr()[0]
             
             if self.gpu_id == 0:
-                self._log_progress(epoch=(epoch+1), avg_val_ce=avg_ce_loss, lr=current_lr, file_name=self.save_path)
+                self._log_progress(epoch=(epoch+1), avg_train_loss=avg_train_loss, avg_val_ce=avg_ce_loss, lr=current_lr, file_name=self.save_path)
                 if avg_ce_loss < best_ce_loss:
                     best_ce_loss = avg_ce_loss
                     self._save_snapshot(epoch, args)
@@ -172,7 +182,7 @@ class Trainer():
         print(f"Epoch {epoch} | Training snapshot saved at {save_file}")
         
         
-    def _log_progress(self, epoch=None, avg_val_ce=None, lr=None, file_name=None):
+    def _log_progress(self, epoch=None, avg_train_loss=None, avg_val_ce=None, lr=None, file_name=None):
         # Ensure the directory exists
         directory = "progress_outputs/"
         if not os.path.exists(directory):
@@ -180,7 +190,7 @@ class Trainer():
         file_path = os.path.join(directory, f"{file_name}_progress_log.txt")
 
         with open(file_path, "a") as f:
-            progress = f"Epoch: {epoch}, Val. Avg. CE Loss: {avg_val_ce}, Learning rate: {lr}\n"
+            progress = f"Epoch: {epoch}, Train Avg. CE Loss: {avg_train_loss}, Val. Avg. CE Loss: {avg_val_ce}, Learning rate: {lr}\n"
             f.write(progress)
 
 
