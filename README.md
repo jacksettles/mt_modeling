@@ -54,18 +54,18 @@ If using more than one GPU, adjust the slurm_train.sh script to allocate more th
 ```
 </pre>
 
-## 5. Feature Attribution
+## 6. Feature Attribution
 
 If you want to use the `input*gradient` method of feature importance attribution, run the slurm_feature_attribution.sh script.
 Again check the args (make sure you pass in the path to a model that actually exists).
 Once completed, you should be able to load these saved feature attributions into the
 `visualize_feature_importance.ipynb` notebook to run the animation.
 
+## 7. Deactivate virtual environment when done
+`deactivate`
+
 ## Credit where credit is due
 The implementation for the Mamba models comes from this github repo: https://github.com/johnma2006/mamba-minimal/tree/master . I simply took the code
 from this repo and modified it to fit with the use case of MT modeling instead of language modeling.
-
-## 6. Deactivate virtual environment when done
-`deactivate`
 
 
