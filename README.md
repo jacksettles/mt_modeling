@@ -16,7 +16,14 @@ mtenv\Scripts\activate
 ## 3. Install dependencies
 pip install -r requirements.txt
 
-## 4. Run training scripts:
+## 4. Process data
+This is assuming you have your data stored inside the "SimData/" directory. The directory structure below "SimData/" should be multiple subdirectories, each representing a unique simulator configuration. Inside each of those subdirectories, you should have as many .csv files as you had simulation runs for that configuration, plus a 'SimConfig.txt' file. If you wish to change which simulator configuration parameters to include in the metadata, modify the "process_config_data" function in "process_data.py". This is especially the case if Tau proteins are implemented to the simulator. Also make sure to adjust the input size to the metadata encoder in the models and training script.
+
+If the data is stored as described above, then simply just run `process_data.py`. This file will scale the metadata properly and split everything into training and test sets.
+
+Since running 3 simulations with 1 configuration means you will have 3 relatively similar simulation runs, all 3 of those simulations will be put into either the training or testing sets. To avoid data leakage, the script will not mix all sequences together.
+
+## 5. Run training scripts:
 Either use the run_trainer.sh script directly from the command line via `source run_trainer.sh`, or (if working on an HPC with a slurm scheduler) use the slurm_train.sh script via `sbatch slurm_train.sh`. This allows the training job to run on its own node so you don't have to wait on it to finish training.
 
 
